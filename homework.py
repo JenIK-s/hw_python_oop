@@ -11,13 +11,18 @@ class InfoMessage:
         self.speed = speed
         self.calories = calories
 
-
     def get_message(self):
-        return (f'Тип тренировки: {self.training_type}; ' 
-               f'Длительность: {self.duration} ч.; '
-               f'Дистанция: {self.distance:.3f} км; '
-               f'Ср. скорость: {self.speed:.3f} км/ч; '
-               f'Потрачено ккал: {self.calories:.3f}. ')
+        return (f'''Тип тренировки: {self.training_type};
+                    Длительность: {self.duration} ч.;
+                    Дистанция: {self.distance:.3f} км;
+                    Ср. скорость: {self.speed:.3f} км/ч;
+                    Потрачено ккал: {self.calories:.3f}.''')
+
+               #(f'Тип тренировки: {self.training_type}; ' 
+               #f'Длительность: {self.duration} ч.; '
+               #f'Дистанция: {self.distance:.3f} км; '
+               #f'Ср. скорость: {self.speed:.3f} км/ч; '
+               #f'Потрачено ккал: {self.calories:.3f}. ')
 
     """Информационное сообщение о тренировке."""
     def print_message(self) -> None:
@@ -59,17 +64,14 @@ class Training:
         calories = self.get_spent_calories()
 
         return InfoMessage(workout_type,
-                           duration, 
-                           distance, 
-                           speed, 
-                           calories)
+        duration, distance, speed, calories)
 
 
 class Running(Training):
     """Тренировка: бег."""
     def get_spent_calories(self) -> float:
         coeff_calorie_1 = 18
-        coeff_calorie_2 = 20    
+        coeff_calorie_2 = 20
         calories: float = ((coeff_calorie_1 * self.get_mean_speed() - 
                            coeff_calorie_2) * self.weight /
                            self.M_IN_KM * self.duration * 60)
@@ -85,7 +87,6 @@ class SportsWalking(Training):
                  height: int) -> None:
         super().__init__(action, duration, weight)
         self.height = height
-
 
     def get_spent_calories(self) -> float:
         coeff_1: float = 0.035
@@ -139,6 +140,7 @@ def main(training: Training) -> None:
     """Главная функция."""
     info = training.show_training_info(workout_type)
     print(info.get_message())
+
 
 if __name__ == '__main__':
     packages = [
