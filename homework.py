@@ -68,16 +68,16 @@ class Training:
 class Running(Training):
     """Тренировка: бег."""
     def get_spent_calories(self) -> float:
-        coeff_calorie_1 = 18
-        coeff_calorie_2 = 20
+        coeff_calorie_1: int = 18
+        coeff_calorie_2: int = 20
+        time: int = 60
         medium_speed = self.get_mean_speed()
 
-        calories: float = ((coeff_calorie_1 *
-                           medium_speed -
-                           coeff_calorie_2) *
-                           self.weight /
-                           self.M_IN_KM *
-                           self.duration * 60)
+        calories: float = ((coeff_calorie_1 * medium_speed -coeff_calorie_2)
+                           * self.weight
+                           / self.M_IN_KM
+                           * self.duration
+                           * time)
 
         return calories
 
@@ -97,15 +97,16 @@ class SportsWalking(Training):
     def get_spent_calories(self) -> float:
         coeff_1: float = 0.035
         coeff_2: float = 0.029
+        time: int = 60
         medium_speed = self.get_mean_speed()
 
-        calories: float = ((coeff_1 *
-                          self.weight +
-                          (medium_speed**2 //
-                          self.height) *
-                          coeff_2 * \
-                          self.weight) *
-                          self.duration * 60)
+        calories: float = ((coeff_1
+                           * self.weight +
+                           + (medium_speed**2 // self.height)
+                           * coeff_2
+                           * self.weight)
+                           * self.duration
+                           * time)
 
         return calories
 
@@ -134,10 +135,9 @@ class Swimming(Training):
         coeff_2: int = 2
         medium_speed: float = self.get_mean_speed()
 
-        calories: float = ((medium_speed +
-                            coeff_1) *
-                            coeff_2 *
-                            self.weight)
+        calories: float = ((medium_speed + coeff_1)
+                           * coeff_2 
+                           * self.weight)
 
         return calories
 
