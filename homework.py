@@ -12,11 +12,12 @@ class InfoMessage:
         self.calories = calories
 
     def get_message(self):
-        return str(f'''Тип тренировки: {self.training_type};
-                    Длительность: {self.duration} ч.;
-                    Дистанция: {self.distance:.3f} км;
-                    Ср. скорость: {self.speed:.3f} км/ч;
-                    Потрачено ккал: {self.calories:.3f}.''')
+        type: str = f'Тип тренировки: {self.training_type};'
+        time: str = f'Длительность: {self.duration} ч.;'
+        dist: str = f'Дистанция: {self.distance:.3f} км;'
+        md_speed: str = f'Ср. скорость: {self.speed:.3f} км/ч;'
+        calories: str = f'Потрачено ккал: {self.calories:.3f}.'
+        return type + ' ' + time + ' ' + dist + ' ' + md_speed + ' ' + calories
 
     def print_message(self) -> None:
         """Информационное сообщение о тренировке."""
@@ -53,17 +54,13 @@ class Training:
         """Получить количество затраченных калорий."""
         pass
 
-    def show_training_info(self, workout_type) -> InfoMessage:
+    def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
-        self.workout_type = workout_type
-        duration = self.duration
-        distance = self.get_distance()
-        speed = self.get_mean_speed()
-        calories = self.get_spent_calories()
-
-        return InfoMessage(workout_type,
-                           duration, distance,
-                           speed, calories)
+        return InfoMessage(self.__class__.__name__,
+                           self.duration,
+                           self.get_distance(),
+                           self.get_mean_speed(),
+                           self.get_spent_calories())
 
 
 class Running(Training):
@@ -159,7 +156,7 @@ def read_package(workout_type: str, data: list) -> Training:
 
 def main(training: Training) -> None:
     """Главная функция."""
-    info = training.show_training_info(workout_type)
+    info = training.show_training_info() 
     print(info.get_message())
 
 
