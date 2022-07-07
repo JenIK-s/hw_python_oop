@@ -17,7 +17,6 @@ class InfoMessage:
                 f'Дистанция: {self.distance:.3f} км; '
                 f'Ср. скорость: {self.speed:.3f} км/ч; '
                 f'Потрачено ккал: {self.calories:.3f}.')
-        
 
     def print_message(self) -> None:
         """Информационное сообщение о тренировке."""
@@ -112,6 +111,7 @@ class SportsWalking(Training):
 class Swimming(Training):
     """Тренировка: плавание."""
     LEN_STEP = 1.38
+
     def __init__(self,
                  action: int,
                  duration: float,
@@ -120,8 +120,7 @@ class Swimming(Training):
                  count_pool: int,) -> None:
         super().__init__(action, duration, weight)
         self.length_pool = length_pool
-        self.count_pool = count_pool    
-        
+        self.count_pool = count_pool
 
     def get_mean_speed(self) -> float:
         speed: float = (self.length_pool
