@@ -2,9 +2,7 @@ from typing import Dict
 from dataclasses import dataclass
 
 
-@dataclass(
-    init=True
-          )
+@dataclass(init=True)
 class InfoMessage:
     training_type: str
     duration: float
